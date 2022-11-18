@@ -16,17 +16,17 @@ const NewCategory = ({ setCategory }) => {
         setValue("");
     }
 
-    return ( 
+    return (
         <>
-            <form onSubmit={ searchGif }>
-                <input type="text" placeholder='Search...' 
+            <form onSubmit={searchGif}>
+                <input type="text" placeholder='Search...'
                     onChange={e => setValue(e.target.value)}
                     value={value}
                 />
             </form>
-            { error ? <p className='error'>El campo no puede estar vacio...</p> : ""}
+            {error ? <p className='error'>El campo no puede estar vacio...</p> : ""}
         </>
-     );
+    );
 }
- 
+
 export default NewCategory;

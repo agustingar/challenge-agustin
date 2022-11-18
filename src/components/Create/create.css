@@ -1,0 +1,34 @@
+@import url('https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap');
+
+
+a {
+    font-family: 'Luckiest Guy', cursive !important;
+    text-decoration: none !important;
+}
+
+button,
+p,
+h6 {
+    font-family: 'Luckiest Guy', cursive !important;
+    color: white;
+}
+
+.form {
+    text-align: center;
+}
+
+.css-1sumxir-MuiFormLabel-root-MuiInputLabel-root.Mui-focused {
+    color: rgb(73, 169, 105) !important;
+    font-family: 'Luckiest Guy', cursive !important;
+    background-color: white;
+    width: 100%;
+    padding: 0.1rem 17rem 0.5rem 10.5rem;
+    border-radius: 2rem;
+    margin: 0 0rem 0 -0.8rem;
+}
+
+.placeholder {
+    font-family: 'Luckiest Guy', cursive !important;
+    color: rgb(0, 0, 0) !important;
+}
+

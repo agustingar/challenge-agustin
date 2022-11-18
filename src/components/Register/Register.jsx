@@ -1,109 +1,82 @@
-import React, { useState } from 'react';
-import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
-import CssBaseline from '@mui/material/CssBaseline';
-import TextField from '@mui/material/TextField';
-import Grid from '@mui/material/Grid';
-import Box from '@mui/material/Box';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-import Typography from '@mui/material/Typography';
-import Container from '@mui/material/Container';
-import { useAuth } from '../../context/authContext';
-import { Link, useNavigate } from 'react-router-dom';
-
-
-
-
+import { auth } from '../../firebaseConfig'
+import { createUserWithEmailAndPassword, sendEmailVerification } from 'firebase/auth'
+import { useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
+import { useAuthValue } from '../../hooks/authContext'
 
 export default function Register() {
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+    const [confirmPassword, setConfirmPassword] = useState('')
+    const [error, setError] = useState('')
+    const navigate = useNavigate()
+    const { setTimeActive } = useAuthValue()
 
-    const [user, setUser] = useState({
-        email: '',
-        password: '',
-    });
-    const { signup } = useAuth();
-    const navigate = useNavigate();
-    const [error,setError] = useState();
-    
-const handleChange = ({ target: { name, value } }) => {
-        setUser({ ...user, [name]: value })
+    const validatePassword = () => {
+        let isValid = true
+        if (password !== '' && confirmPassword !== '') {
+            if (password !== confirmPassword) {
+                isValid = false
+                setError('Passwords does not match')
+            }
+        }
+        return isValid
     }
 
-    const handleSubmit = async (e) => {
+    const register = e => {
         e.preventDefault()
-        try {
-           await signup(user.email, user.password)
-            navigate('/')
-        } catch (error) {
-           if(error === "auth/internal-error"){
-            setError("Correo invalido")
+        setError('')
+        if (validatePassword()) {
+            // Create a new user with email and password using firebase
+            createUserWithEmailAndPassword(auth, email, password)
+                .then(() => {
+                    sendEmailVerification(auth.currentUser)
+                        .then(() => {
+                            setTimeActive(true)
+                            navigate('/verify-email')
+                        }).catch((err) => alert(err.message))
+                })
+                .catch(err => setError(err.message))
         }
-        }
+        setEmail('')
+        setPassword('')
+        setConfirmPassword('')
     }
 
     return (
+        <div className='center'>
+            <div className='auth'>
+                <h1>Register</h1>
+                {error && <div className='auth__error'>{error}</div>}
+                <form onSubmit={register} name='registration_form'>
+                    <input
+                        type='email'
+                        value={email}
+                        placeholder="Enter your email"
+                        required
+                        onChange={e => setEmail(e.target.value)} />
 
-            <Container component="main" maxWidth="xs">
-                <CssBaseline />
-                <Box
-                    sx={{
-                        marginTop: 8,
-                        display: 'flex',
-                        flexDirection: 'column',
-                        alignItems: 'center',
-                    }}
-                >
-                    <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-                        <LockOutlinedIcon />
-                    </Avatar>
-                    <Typography component="h1" variant="h5">
-                        Sign up
-                    </Typography>
-                    <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
-                        <Grid container spacing={2}>
-                            <Grid item xs={12}>
-                                <TextField
-                                    required
-                                    fullWidth
-                                    id="email"
-                                    label="Email Address"
-                                    name="email"
-                                    autoComplete="email"
-                                    onChange={handleChange}
-                                />
-                            </Grid>
-                            <Grid item xs={12}>
-                                <TextField
-                                    required
-                                    fullWidth
-                                    name="password"
-                                    label="Password"
-                                    type="password"
-                                    id="password"
-                                    autoComplete="new-password"
-                                    onChange={handleChange}
-                                />
-                            </Grid>
-                            {error && <Typography>{error}</Typography>}
-                        </Grid>
-                        <Button
-                            type="submit"
-                            fullWidth
-                            variant="contained"
-                            sx={{ mt: 3, mb: 2 }}
-                        >
-                            Sign Up
-                        </Button>
-                        <Grid container justifyContent="flex-end">
-                            <Grid item>
-                                <Link to="/login"  variant="body2">
-                                    Already have an account? Sign in
-                                </Link>
-                            </Grid>
-                        </Grid>
-                    </Box>
-                </Box>
-            </Container>
+                    <input
+                        type='password'
+                        value={password}
+                        required
+                        placeholder='Enter your password'
+                        onChange={e => setPassword(e.target.value)} />
 
-    );
+                    <input
+                        type='password'
+                        value={confirmPassword}
+                        required
+                        placeholder='Confirm password'
+                        onChange={e => setConfirmPassword(e.target.value)} />
+
+                    <button type='submit'>Register</button>
+                </form>
+                <span>
+                    Already have an account?
+                    <Link to='/login'>login</Link>
+                </span>
+            </div>
+        </div>
+    )
 }

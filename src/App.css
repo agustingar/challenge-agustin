@@ -1,13 +1,15 @@
-@import url('https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap');
 
 body{
-  font-family: 'Lato', sans-serif;
-  background-color: #D9F5FF;
-}
+  font-family: 'Luckiest Guy', cursive;
+  background-color: black;}
 
-.App{
+.home{
   text-align: center;
   margin-top: 6%;  
+  background-color: black;
+  color: white;
+  font-family: 'Luckiest Guy', cursive;
 }
 
 .container-gifs {
@@ -43,10 +45,10 @@ p.author {
   justify-content: center;
   margin-top: 3%;
   gap: 7px;
-  color: #000;
+  color: rgb(255, 255, 255);
 }
 p.author a {
   text-decoration: none;
   font-weight: 700;
-  color: #000;
+  color: rgb(255, 255, 255);
 }

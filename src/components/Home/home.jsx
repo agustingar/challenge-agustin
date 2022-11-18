@@ -4,21 +4,16 @@ import NewCategory from '../newCategory';
 import DisplayGifs from '../Gifs';
 import { useState } from 'react';
 
-import { useNavigate } from 'react-router-dom';
 
 
 function Home() {
-
-    const { loader, data } = useApi(URL);
     const [category, setCategory] = useState("");
-    const navigate = useNavigate();
     const URL = `https://api.giphy.com/v1/gifs/trending?api_key=TMBLr1oiqdrkpb21wGxbjAzhHDnnvlgq&limit=25&rating=g`
+    const { loader, data } = useApi(URL);
 
-   
     return (
         <div>
-    
-            <div className="App">
+            <div className="home">
                 <h2>Gifs Expert App</h2>
                 <NewCategory setCategory={setCategory} />
                 <DisplayGifs category={category} />
