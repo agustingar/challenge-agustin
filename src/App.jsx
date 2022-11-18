@@ -9,10 +9,10 @@ import {onAuthStateChanged} from 'firebase/auth'
 import {Navigate} from 'react-router-dom'
 import NavBar from './components/NavBar/NavBar'
 import Home from './components/Home/home'
+import Galery from './components/Galery/Galery';
 function App() {
 
   const [currentUser, setCurrentUser] = useState(null)
-  const [timeActive, setTimeActive] = useState(false)
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
@@ -22,20 +22,25 @@ function App() {
 
   return (
     <Router>
-      <AuthProvider value={{currentUser, timeActive, setTimeActive}}>
+      <AuthProvider value={{currentUser}}>
         <Routes>
           <Route exact path='/' element={
-       <><NavBar />   <Home/></>
+       <> <NavBar /><Home/></>
           }/>
           <Route path="/login" element={
             !currentUser? 
-             <Login/>
+            <><NavBar /> <Login/> </>
             : <Navigate to='/' replace/>
           } />
           <Route path="/register" element={
             !currentUser? 
-            <Register/>
+            <><NavBar />  <Register/></>
             : <Navigate to='/' replace/>
+          } />
+          <Route path="/galery" element={
+            
+            <><NavBar /> <Galery/> </>
+            
           } />
     
         </Routes> 

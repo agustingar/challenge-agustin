@@ -3,8 +3,7 @@ import useApi from '../hooks/useApi';
 import ImageItem from './imageItem';
 
 const DisplayGifs = ({ category }) => {
-
-    const url = `https://api.giphy.com/v1/gifs/search?api_key=TMBLr1oiqdrkpb21wGxbjAzhHDnnvlgq&q=${category}&limit=25`;
+    const url = `https://api.giphy.com/v1/gifs/search?api_key=TMBLr1oiqdrkpb21wGxbjAzhHDnnvlgq&q=${category}&limit=15`;
     const { loader, data } = useApi(url);
 
     return ( 

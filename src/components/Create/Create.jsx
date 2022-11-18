@@ -66,10 +66,11 @@ export default function Create() {
             url,
         };
         store.createItem(newGif);
-        navigate('/');
-
+        navigate('/galery');
+ console.log(newGif)
 
     }
+   
     return (
 
         <div className='modalContainer' >

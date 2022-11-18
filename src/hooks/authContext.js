@@ -2,6 +2,7 @@ import React, {useContext} from 'react'
 
 export const AuthContext = React.createContext()
 
+
 export function AuthProvider({children, value}) {
   return (
     <AuthContext.Provider value={value}>
@@ -11,5 +12,5 @@ export function AuthProvider({children, value}) {
 }
 
 export function useAuthValue(){
-  return useContext(AuthContext)
+return useContext(AuthContext)
 }

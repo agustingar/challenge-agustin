@@ -65,13 +65,22 @@ function NavBar() {
                     >
                         HOME
                     </Link>
-                    <Button
+                    {currentUser ?      <Link
+                        style={{ color: 'black' }}
+                        href="/galery"
+                        sx={{ my: 1, mx: 1.5 }}
+                    >
+                        Galery
+                    </Link>
+: ""}
+                    {currentUser ?     <Button
                         style={{ color: 'black' }}
                         onClick={handleOpen}
                         sx={{ my: 1, mx: 1.5 }}
                     >
                         Upload Gif
                     </Button>
+: ""}
                     <Modal
 
                         hideBackdrop

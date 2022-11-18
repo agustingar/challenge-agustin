@@ -7,16 +7,18 @@ const useApi = (url) => {
     const fetchApi = () => {
         fetch(url)
             .then((response) => response.json())
-            .then((response) => {
+            .then((responseJSON) => {
                 setLoader(true);
-                setData(response.data);
+                setData(responseJSON.data);
             })
-            .catch((error) => console.log(error));
+            .catch((error) => {
+                return console.log(error);
+            });
     };
 
     useEffect(() => {
         fetchApi();
-    }, []);
+    }, [url]);
 
     return { loader, data };
 };

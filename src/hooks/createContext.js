@@ -1,8 +1,10 @@
 import React, { createContext, useContext, useState } from "react"
 
 const AppContext = createContext({
+    items: [],
     createItem: (item) => { },
     updateItem: (item) => { },
+    getItem: (id) => { },
 })
 export default function Store({ children }) {
     const [items, setItems] = useState([]);
@@ -18,10 +20,17 @@ export default function Store({ children }) {
 
         temp[index] = { ...item };
     }
+    function getItem(id) {
+        const item = items.find(item => item.id === id);
+        return item;
+
+    }
 
     return (
         <AppContext.Provider
        value={{
+        items,
+        getItem,
         createItem,
         updateItem,
        }}

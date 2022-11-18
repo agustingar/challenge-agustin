@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 const NewCategory = ({ setCategory }) => {
-
+    
     const [value, setValue] = useState("");
     const [error, setError] = useState(false);
 
