@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 const NewCategory = ({ setCategory }) => {
-    
+
     const [value, setValue] = useState("");
     const [error, setError] = useState(false);
 
@@ -19,7 +19,7 @@ const NewCategory = ({ setCategory }) => {
     return (
         <>
             <form onSubmit={searchGif}>
-                <input type="text" placeholder='Search...'
+                <input type="text" placeholder={'Search...'}
                     onChange={e => setValue(e.target.value)}
                     value={value}
                 />

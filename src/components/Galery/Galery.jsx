@@ -1,44 +1,18 @@
+
 import React from 'react'
-import { Link } from 'react-router-dom';
-import { useAppContext } from '../../hooks/createContext'
 
-export default function Galery ({newGif}) {
-const update = useAppContext();
+export default function Galery() {
 
-const gifContainer = {
-    display: 'flex',
-    flexWrap: 'wrap',
-    gap: '10px',
-}
-
-const gifInfo = {
-    display: 'flex',
-    flexDirection: 'column',
-   alignItems: 'center',
-   textAlign: 'center',
-   color: 'white',
-   textDecoration: 'none',
-};
-
-  return (
-    <>
-     
-        <div style={gifContainer}>
-
-          {update.items
-            .map((item) => (
-              <Link to={`/view/${item.id}`} style={gifInfo}>
-              <div style={{color:'white'}}>{item?.cover ? <img src={item?.cover} width='300'  alt={item.title} /> : ''}</div>
-              <div style={{color:'white'}}>{item?.url ? <img src={item?.url} width='300' height='200'  alt={item.title} /> : ''}</div>
-              <div style={{color:'white'}}>{item.title}</div>
-          </Link>
-
-            ))}
+    return (
+        <>
+            <div className='container-gifs' style={{backgroundColor:'black', height:'94vh', marginTop:'0%',padding:'2rem 0 0 0'}}>
+                <div style={{ color: 'white' }}>
+                    {localStorage.getItem('gif') ? <img src={localStorage.getItem('gif')} width='300' alt={localStorage.getItem('title')} /> : ''}
+                    {localStorage.getItem('url') ? <img src={localStorage.getItem('url')} width='300' alt={localStorage.getItem('title')} /> : ''}
+                    <h2>{localStorage.getItem('title')}</h2>
+                    <h4>{localStorage.getItem('author')}</h4>
+                </div>
             </div>
-            <div>
-        {newGif}
-        </div>
-        
-    </>
-  )
+        </>
+    )
 }

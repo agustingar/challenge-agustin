@@ -8,7 +8,9 @@ a {
 
 button,
 p,
-h6 {
+h6,
+h2,
+h4{
     font-family: 'Luckiest Guy', cursive !important;
     color: white;
 }
@@ -29,6 +31,6 @@ h6 {
 
 .placeholder {
     font-family: 'Luckiest Guy', cursive !important;
-    color: rgb(0, 0, 0) !important;
+    color:rgb(57, 178, 69) !important
 }
 

@@ -71,7 +71,6 @@ export default function Login() {
                         <Button  onClick={loginWithGoogle} fullWidth style={{textAlign: 'center', paddingBottom:20}}>
                 <img src="https://upload.wikimedia.org/wikipedia/commons/0/09/IOS_Google_icon.png"width={80} 
                 alt="google icon" />
-                
             </Button>
                     </form>
                     <Typography style={{color:'black'}}>

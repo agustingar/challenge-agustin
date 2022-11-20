@@ -1,18 +1,16 @@
 import { FormControl, InputLabel, MenuItem, Select, TextField, Typography, Button } from '@mui/material';
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
-import { useAppContext } from '../../hooks/createContext';
 import './create.css'
+
+
 export default function Create() {
     const [title, setTitle] = useState("");
     const [author, setAuthor] = useState("");
     const [cover, setCover] = useState("");
     const [url, setUrl] = useState("");
     const [select, setSelect] = React.useState("");
-
-    const store = useAppContext();
     const navigate = useNavigate();
-
 
     const handleSelect = (event) => {
         setSelect(event.target.value);
@@ -40,14 +38,11 @@ export default function Create() {
         }
     }
 
-    function handleOnChangeGif(e) {
+    const handleOnChangeGif = async (e) => {
         const element = e.target;
         const file = element.files[0];
         const reader = new FileReader();
-
-
         reader.readAsDataURL(file);
-
         reader.onloadend = function () {
             setCover(reader.result.toString());
         };
@@ -57,7 +52,6 @@ export default function Create() {
 
     function handleSubmit(e) {
         e.preventDefault()
-
         const newGif = {
             id: crypto.randomUUID(),
             title,
@@ -65,12 +59,15 @@ export default function Create() {
             cover,
             url,
         };
-        store.createItem(newGif);
+        localStorage.setItem("gif", cover);
+        localStorage.setItem("author", author);
+        localStorage.setItem("title", title);
+        localStorage.setItem("url", url);
         navigate('/galery');
- console.log(newGif)
-
+        newGif();
     }
-   
+
+
     return (
 
         <div className='modalContainer' >
@@ -95,7 +92,6 @@ export default function Create() {
                         name="author"
                         onChange={handleChange}
                         value={author} />
-
                 </div>
 
                 <FormControl fullWidth style={{ backgroundColor: 'white', borderRadius: '1rem', margin: '1rem 0rem' }}>
@@ -115,14 +111,15 @@ export default function Create() {
                 {select === 10 &&
                     <>
                         <TextField
+                            inputProps={{ accept: "image/gif" }}
                             style={{ backgroundColor: 'white', borderRadius: '1rem' }}
-                            type="file"
-                            accept="image/*"
+                            type={"file"}
                             name="cover"
                             onChange={handleOnChangeGif}
                             fullWidth
                         />
                         <div> {!!cover ? <img src={cover} width="200px" alt='preview' /> : ""}</div>
+
                     </>}
                 {select === 20 &&
                     <div>
@@ -135,8 +132,6 @@ export default function Create() {
                             value={url} />
                     </div>
                 }
-
-
 
                 <Button
                     type="submit"
@@ -153,4 +148,3 @@ export default function Create() {
         </div>
     );
 }
-
