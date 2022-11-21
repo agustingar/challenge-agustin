@@ -19,7 +19,7 @@ localStorage.removeItem('title');
                     {localStorage.getItem('url') ? <img src={localStorage.getItem('url')} width='300' alt={localStorage.getItem('title')} /> : ''}
                     <h2>{localStorage.getItem('title')}</h2>
                     <h4>{localStorage.getItem('author')}</h4>
-                    <Button onClick={handleDelete}><DeleteIcon/></Button>
+                    {localStorage.getItem('gif', 'title', 'url', 'author') ?<Button onClick={handleDelete}><DeleteIcon color="primary"/></Button> : ''}
                 </div>
             </div>
         </>
