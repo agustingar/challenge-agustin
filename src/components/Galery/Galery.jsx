@@ -1,6 +1,6 @@
 
 import React from 'react'
-import DeleteIcon from '@mui/icons-material/Delete';
+import Delete from '@mui/icons-material/Delete';
 
 export default function Galery() {
 const handleDelete =(e)=> {
@@ -19,7 +19,7 @@ localStorage.removeItem('title');
                     {localStorage.getItem('url') ? <img src={localStorage.getItem('url')} width='300' alt={localStorage.getItem('title')} /> : ''}
                     <h2>{localStorage.getItem('title')}</h2>
                     <h4>{localStorage.getItem('author')}</h4>
-                    <DeleteIcon onClick={handleDelete}></DeleteIcon>
+                    <Delete onClick={handleDelete}></Delete>
                 </div>
             </div>
         </>
