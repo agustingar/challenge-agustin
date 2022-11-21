@@ -1,4 +1,4 @@
-import { signInWithEmailAndPassword ,signInWithPopup, GoogleAuthProvider } from 'firebase/auth'
+import { signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from 'firebase/auth'
 import { auth } from '../../firebaseConfig'
 import { Link, useNavigate } from 'react-router-dom'
 import { useState } from 'react'
@@ -24,11 +24,11 @@ export default function Login() {
         e.preventDefault()
         const googleProvider = new GoogleAuthProvider();
         signInWithPopup(auth, googleProvider)
-        .then()
-        .catch(err => setError(err.message))
+            .then()
+            .catch(err => setError(err.message))
         navigate('/')
-      };
-    
+    };
+
 
     return (
         <ThemeProvider theme={theme}>
@@ -68,14 +68,14 @@ export default function Login() {
                         >
                             Sign In
                         </Button>
-                        <Button  onClick={loginWithGoogle} fullWidth style={{textAlign: 'center', paddingBottom:20}}>
-                <img src="https://upload.wikimedia.org/wikipedia/commons/0/09/IOS_Google_icon.png"width={80} 
-                alt="google icon" />
-            </Button>
+                        <Button onClick={loginWithGoogle} fullWidth style={{ textAlign: 'center', paddingBottom: 20 }}>
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/0/09/IOS_Google_icon.png" width={80}
+                                alt="google icon" />
+                        </Button>
                     </form>
-                    <Typography style={{color:'black'}}>
+                    <Typography style={{ color: 'black' }}>
                         Don't have and account?
-                        <Link to='/register' style={{color:'#1c6ebf' ,padding:'10px'}}>Create one here</Link>
+                        <Link to='/register' style={{ color: '#1c6ebf', padding: '10px' }}>Create one here</Link>
                     </Typography>
                 </Box>
             </Container>

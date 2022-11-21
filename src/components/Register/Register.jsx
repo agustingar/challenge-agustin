@@ -57,33 +57,33 @@ export default function Register() {
                         alignItems: 'center',
                     }}
                 >
-               <Avatar sx={{ m: 1, bgcolor: 'primary.main' }} />
+                    <Avatar sx={{ m: 1, bgcolor: 'primary.main' }} />
                     <Typography>Register</Typography>
-                {error && <div className='auth__error'>{error}</div>}
-                <form onSubmit={register} name='registration_form'>
-                    <TextField
-                        type='email'
-                        value={email}
-                        placeholder="Enter your email"
-                        required
-                        fullWidth
-                        onChange={e => setEmail(e.target.value)} />
+                    {error && <div className='auth__error'>{error}</div>}
+                    <form onSubmit={register} name='registration_form'>
+                        <TextField
+                            type='email'
+                            value={email}
+                            placeholder="Enter your email"
+                            required
+                            fullWidth
+                            onChange={e => setEmail(e.target.value)} />
 
-                    <TextField
-                        type='password'
-                        value={password}
-                        required
-                        placeholder='Enter your password'
-                        onChange={e => setPassword(e.target.value)} />
+                        <TextField
+                            type='password'
+                            value={password}
+                            required
+                            placeholder='Enter your password'
+                            onChange={e => setPassword(e.target.value)} />
 
-                    <TextField
-                        type='password'
-                        value={confirmPassword}
-                        required
-                        placeholder='Confirm password'
-                        onChange={e => setConfirmPassword(e.target.value)} />
+                        <TextField
+                            type='password'
+                            value={confirmPassword}
+                            required
+                            placeholder='Confirm password'
+                            onChange={e => setConfirmPassword(e.target.value)} />
 
-<Button
+                        <Button
                             type="submit"
                             fullWidth
                             variant="contained"
@@ -91,14 +91,14 @@ export default function Register() {
                         >
                             Register
                         </Button>
-                </form>
-                <Typography style={{color:'black'}}>
-                    Already have an account?
-                    <Link to='/login' style={{color:'#1c6ebf', padding:'10px'}}>login</Link>
-                </Typography>
-            </Box>
+                    </form>
+                    <Typography style={{ color: 'black' }}>
+                        Already have an account?
+                        <Link to='/login' style={{ color: '#1c6ebf', padding: '10px' }}>login</Link>
+                    </Typography>
+                </Box>
             </Container>
-            </ThemeProvider>
-       
+        </ThemeProvider>
+
     )
 }

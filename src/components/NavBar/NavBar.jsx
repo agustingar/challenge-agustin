@@ -22,11 +22,10 @@ function NavBar() {
         border: '2px solid #000',
         boxShadow: 24,
         p: 4,
-      };
+    };
     const { currentUser } = useContext(AuthContext);
     const navigate = useNavigate();
     const [open, setOpen] = useState(false);
-
 
     const clickLogin = () => {
         if (currentUser) {
@@ -35,7 +34,7 @@ function NavBar() {
             navigate("/login");
         }
     };
-    
+
     const handleOpen = () => {
         setOpen(true);
     };
@@ -65,29 +64,27 @@ function NavBar() {
                     >
                         HOME
                     </Link>
-                    {currentUser ?      <Link
+                    {currentUser ? <Link
                         style={{ color: 'black' }}
                         href="/galery"
                         sx={{ my: 1, mx: 1.5 }}
                     >
                         Galery
                     </Link>
-: ""}
-                    {currentUser ?     <Button
+                        : ""}
+                    {currentUser ? <Button
                         style={{ color: 'black' }}
                         onClick={handleOpen}
                         sx={{ my: 1, mx: 1.5 }}
                     >
                         Upload Gif
                     </Button>
-: ""}
+                        : ""}
                     <Modal
-
                         hideBackdrop
                         open={open}
                         onClose={handleClose}
                         aria-labelledby="child-modal-title"
-                     
                         aria-describedby="child-modal-description"
                     >
                         <Box sx={{ ...style, width: 400 }}>
