@@ -2,14 +2,17 @@
 import React from 'react'
 import DeleteIcon from '@mui/icons-material/Delete';
 import { Button } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 
 export default function Galery() {
+    const navigate = useNavigate();
 const handleDelete =(e)=> {
 e.preventDefault();
 localStorage.removeItem('gif');
 localStorage.removeItem('url');
 localStorage.removeItem('author');
 localStorage.removeItem('title');
+navigate('/galery')
 }
     return (
         <>
